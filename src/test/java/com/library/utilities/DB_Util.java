@@ -33,8 +33,6 @@ public class DB_Util {
         }
 
     }
-
-
     /**
      * Create connection method , just checking one connection successful or not
      */
@@ -47,7 +45,6 @@ public class DB_Util {
         createConnection(url, username, password);
 
     }
-
 
     /**
      * Run the sql query provided and return ResultSet object
@@ -67,7 +64,6 @@ public class DB_Util {
         return rs ;
 
     }
-
     /**
      * destroy method to clean up all the resources after being used
      */
@@ -119,7 +115,6 @@ public class DB_Util {
 
     }
 
-
     /**
      * find out the column count
      * @return column count of this ResultSet
@@ -138,8 +133,6 @@ public class DB_Util {
         return columnCount ;
 
     }
-
-
 
     /**
      * // Get all the Column names into a list object
@@ -194,9 +187,6 @@ public class DB_Util {
 
         return rowDataAsLst ;
     }
-
-
-
     /**
      * getting the cell value according to row num and column index
      * @param rowNum  row number to get the data from
@@ -219,7 +209,6 @@ public class DB_Util {
         return cellValue ;
 
     }
-
     /**
      * getting the cell value according to row num and column name
      * @param rowNum  row number to get the data from
@@ -243,7 +232,6 @@ public class DB_Util {
 
     }
 
-
     /**
      * Get First Cell Value at First row First Column
      */
@@ -252,9 +240,6 @@ public class DB_Util {
         return getCellValue(1,1) ;
 
     }
-
-    //
-
     /**
      * getting entire column data as list according to column number
      * @param columnNum column number to get all data
@@ -282,7 +267,6 @@ public class DB_Util {
         return columnDataLst ;
 
     }
-
     /**
      * getting entire column data as list according to column Name
      * @param columnName column name to get all data
@@ -310,7 +294,6 @@ public class DB_Util {
         return columnDataLst ;
 
     }
-
 
     /**
      * display all data from the ResultSet Object

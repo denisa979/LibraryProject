@@ -1,4 +1,4 @@
-package com.library.stepDefenitions;
+package com.library.stepDefinition;
 
 import com.library.utilities.ConfigurationReader;
 import com.library.utilities.DB_Util;

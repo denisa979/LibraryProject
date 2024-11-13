@@ -58,7 +58,6 @@ public class BrowserUtil {
         }
         return elemTexts;
     }
-
     /**
      * Extracts text from list of elements matching the provided locator into new List<String>
      *
@@ -136,7 +135,6 @@ public class BrowserUtil {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeout));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
-
     /**
      * waits for backgrounds processes on the browser to complete
      *
@@ -155,7 +153,6 @@ public class BrowserUtil {
             error.printStackTrace();
         }
     }
-
     /**
      * Verifies whether the element matching the provided locator is displayed on page
      *
@@ -171,7 +168,6 @@ public class BrowserUtil {
 
         }
     }
-
     /**
      * Verifies whether the element matching the provided locator is NOT displayed on page
      *
@@ -186,7 +182,6 @@ public class BrowserUtil {
 
         }
     }
-
 
     /**
      * Verifies whether the element is displayed on page
@@ -203,7 +198,6 @@ public class BrowserUtil {
 
         }
     }
-
 
     /**
      * Waits for element to be not stale
@@ -235,7 +229,6 @@ public class BrowserUtil {
         }
     }
 
-
     /**
      * Clicks on an element using JavaScript
      *
@@ -245,7 +238,6 @@ public class BrowserUtil {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
     }
-
 
     /**
      * Scrolls down to an element using JavaScript
@@ -264,7 +256,6 @@ public class BrowserUtil {
     public static void doubleClick(WebElement element) {
         new Actions(Driver.getDriver()).doubleClick(element).build().perform();
     }
-
     /**
      * Changes the HTML attribute of a Web Element to the given value using JavaScript
      *
@@ -275,7 +266,6 @@ public class BrowserUtil {
     public static void setAttribute(WebElement element, String attributeName, String attributeValue) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", element, attributeName, attributeValue);
     }
-
     /**
      * Highlighs an element by changing its background and border color
      * @param element
@@ -303,7 +293,6 @@ public class BrowserUtil {
             }
         }
     }
-
     /**
      * attempts to click on provided element until given time runs out
      *
@@ -320,7 +309,6 @@ public class BrowserUtil {
             }
         }
     }
-
     /**
      * executes the given JavaScript command on given web element
      *
@@ -331,7 +319,6 @@ public class BrowserUtil {
         jse.executeScript(command, element);
 
     }
-
     /**
      * executes the given JavaScript command on given web element
      *
@@ -342,8 +329,6 @@ public class BrowserUtil {
         jse.executeScript(command);
 
     }
-
-
     /**
      * This method will recover in case of exception after unsuccessful the click,
      * and will try to click on element again.
@@ -371,7 +356,6 @@ public class BrowserUtil {
             }
         }
     }
-
     /**
      *  checks that an element is present on the DOM of a page. This does not
      *    * necessarily mean that the element is visible.
@@ -381,8 +365,6 @@ public class BrowserUtil {
     public static void waitForPresenceOfElement(By by, long time) {
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(time)).until(ExpectedConditions.presenceOfElementLocated(by));
     }
-
-
 
     public static List<String> getAllSelectOptions(WebElement element){
 

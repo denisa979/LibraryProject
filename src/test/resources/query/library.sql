@@ -5,14 +5,9 @@ select count(*) from users;
 select * from book_borrow
 where is_returned = 0;
 
-select name from book_categories;
+select * from users
+where id=14815;
 
-# name,author ,isbn,desc,year
-
-select name,isbn,year,author,description from books
-where name = 'Agile Testing';
-
-select full_name from users
-where email = 'librarian55@library';
-
-select status from users where email='anisa.stokes@gmail.com';
+select full_name,email,user_group_id,status,start_date,end_date,address
+from users
+where id=14815;
