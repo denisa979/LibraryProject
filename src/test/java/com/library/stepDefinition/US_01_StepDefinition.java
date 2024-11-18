@@ -12,9 +12,10 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.everyItem;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 
 
 public class US_01_StepDefinition {
@@ -57,4 +58,24 @@ public class US_01_StepDefinition {
     }
 
 
+    String id;
+    @And("Path param {string} is {string}")
+    public void pathParamIs(String id, String valua) {
+        givenPart.pathParam(id, valua);
+        id=valua;
+    }
+
+
+    @And("{string} field should be same with path param")
+    public void fieldShouldBeSameWithPathParam(String path) {
+
+        thenPart.body(path,is(id));
+    }
+
+    @And("following fields should not be null")
+    public void followingFieldsShouldNotBeNull(List<String>path) {
+        for(String each: path){
+            thenPart.body(each, is(notNullValue()));
+        }
+    }
 }
