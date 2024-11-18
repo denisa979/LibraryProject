@@ -7,7 +7,7 @@ In implementation of BDD we have four main packages.
 pages: implementing Page Object Model Design Pattern. Also abstract BasePage where we use PageFactory class from Selenium to introduse the elements
 of this class to the Driver object so we can use it by instantionating object of this class to the StepDefenition classes,
 runners: CukesRunner class, we can run the code with different tags & FailedRunner class to run only failed test.
-stepDefenition: Hooks clas with @Before & @After methods coming from the cucumber. Also implementation of our scenarios.
+stepDefenition: Hooks clas with @Before & @After methods coming from the Cucumber. Also implementation of our scenarios.
 utility: Driver class implementing Singleton Design Pattern. Also implement parallel testing, while still having Singleton.
 configuration.properties file
 POM XML file
