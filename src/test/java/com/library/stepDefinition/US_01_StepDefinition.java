@@ -206,6 +206,26 @@ public class US_01_StepDefinition {
         System.out.println("uiDesc = " + uiData);
         Assert.assertEquals(apiData,uiData);
 
+    }
 
+    @Then("created user information should match with Database")
+    public void createdUserInformationShouldMatchWithDatabase() {
+    }
+
+    @Then("created user should be able to login Library UI")
+    public void createdUserShouldBeAbleToLoginLibraryUI() {
+    }
+
+    @And("created user name should appear in Dashboard Page")
+    public void createdUserNameShouldAppearInDashboardPage() {
+    }
+
+    @Given("I logged Library api with credentials {string} and {string}")
+    public void iLoggedLibraryApiWithCredentialsAnd(String arg0, String arg1) {
+
+    }
+
+    @And("I send token information as request body")
+    public void iSendTokenInformationAsRequestBody() {
     }
 }

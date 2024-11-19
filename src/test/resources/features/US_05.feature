@@ -21,4 +21,4 @@ Feature: : As a user, I want to view my own user information using the API
       | student5@library     | libraryUser | 3             |
       | librarian10@library  | libraryUser | 2             |
       | student10@library    | libraryUser | 3             |
-      | librarian13@library | libraryUser | 2             |
+      | librarian13@library  | libraryUser | 2             |

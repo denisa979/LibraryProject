@@ -12,7 +12,7 @@ Feature: As a librarian, I want to create a new book
     And "book_id" field should not be null
 
 
-  @US03-2 @db @ui
+    @US_03 @db @ui
   Scenario: Create a new book all layers
     Given I logged Library api as a "librarian"
     And Accept header is "application/json"
