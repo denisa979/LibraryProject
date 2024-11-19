@@ -325,14 +325,15 @@ public class DB_Util {
 
     /**
      * Save entire row data as Map<String,String>
+     *
      * @param rowNum row number
      * @return Map object that contains key value pair
-     *      key     : column name
-     *      value   : cell value
+     * key     : column name
+     * value   : cell value
      */
-    public static Map<String,String> getRowMap(int rowNum){
+    public static Map<String, Object> getRowMap(int rowNum){
 
-        Map<String,String> rowMap = new LinkedHashMap<>();
+        Map<String,Object> rowMap = new LinkedHashMap<>();
         int columnCount = getColumnCount() ;
 
         try{
@@ -359,22 +360,23 @@ public class DB_Util {
      * Now Store All rows as List of Map object
      * @return List of Map object that contain each row data as Map<String,String>
      */
-    public static List<Map<String,String>> getAllRowAsListOfMap(){
+    public static List<Map<String,Object>> getAllRowAsListOfMap(){
 
-        List<Map<String,String>> allRowLstOfMap = new ArrayList<>();
+        List<Map<String,Object>> allRowLstOfMap = new ArrayList<>();
         int rowCount = getRowCount() ;
         // move from first row till last row
         // get each row as map object and add it to the list
 
         for (int rowIndex = 1; rowIndex <= rowCount ; rowIndex++) {
 
-            Map<String,String> rowMap = getRowMap(rowIndex);
+            Map<String,Object> rowMap = getRowMap(rowIndex);
             allRowLstOfMap.add( rowMap ) ;
 
         }
         resetCursor();
 
         return allRowLstOfMap ;
+
 
     }
 }

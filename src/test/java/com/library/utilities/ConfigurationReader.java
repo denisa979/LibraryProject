@@ -27,5 +27,6 @@ public class ConfigurationReader {
             System.out.println("File not found in ConfigurationReader class");
         }
     }
-    public static String getProperty(String keyword){return properties.getProperty(keyword);}
+    public static String getProperty(String keyword){
+    return properties.getProperty(keyword);}
 }

@@ -373,4 +373,10 @@ public class BrowserUtil {
         return getElementsText(select.getOptions());
     }
 
+    public static String getSelectedOption(WebElement element){
+
+        Select select = new Select(element);
+        return  select.getFirstSelectedOption().getText();
+    }
+
 }
