@@ -1,5 +1,6 @@
 package com.library.stepDefinition;
 import com.library.pages.BookPage;
+import com.library.pages.LoginPage;
 import com.library.utilities.BrowserUtil;
 import com.library.utilities.ConfigurationReader;
 import com.library.utilities.DB_Util;
@@ -25,15 +26,13 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 
+
 public class US_01_StepDefinition {
     RequestSpecification givenPart;
     Response response;
     ValidatableResponse thenPart;
 
 
-    /**
-     *US_01
-     */
     @Given("I logged Library api as a {string}")
     public void i_logged_library_api_as_a(String userType) {
         givenPart= RestAssured.given().log().uri()
@@ -67,10 +66,6 @@ public class US_01_StepDefinition {
         thenPart.body(path, everyItem(notNullValue()));
     }
 
-
-    /**
-     *US_02
-     */
     String id;
     @And("Path param {string} is {string}")
     public void pathParamIs(String pathParam, String valua) {
@@ -98,10 +93,6 @@ public class US_01_StepDefinition {
         thenPart.body(path, is(value));
     }
 
-    /**
-     * US 03
-     *
-     */
     @Given("Request Content Type header is {string}")
     public void requestContentTypeHeaderIs(String contentType) {
         givenPart.contentType(contentType);
@@ -128,8 +119,6 @@ public class US_01_StepDefinition {
         givenPart.formParams(requestBody);
     }
 
-
-
     @When("I send POST request to {string} endpoint")
     public void iSendPOSTRequestToEndpoint(String endpoint) {
         response = givenPart.when()
@@ -143,9 +132,6 @@ public class US_01_StepDefinition {
             thenPart.body(path, is(notNullValue()));
     }
 
-    /**
-     * US03-2
-     */
     @Then("UI, Database and API created book information must match")
     public void uiDatabaseAndAPICreatedBookInformationMustMatch() {
 
@@ -206,6 +192,75 @@ public class US_01_StepDefinition {
         System.out.println("uiDesc = " + uiData);
         Assert.assertEquals(apiData,uiData);
 
+    }
+
+    @Then("created user information should match with Database")
+    public void createdUserInformationShouldMatchWithDatabase() {
+        //GET ME USER ID
+        String id = response.path("user_id");
+        System.out.println("id = " + id);
+
+        //GET ME DATA FROM DATABASE
+        String query="select full_name, email, user_group_id, status,start_data, end_data, address from users where id="+id;
+        DB_Util.runQuery(query);
+
+        Map<String, Object>dbUser=DB_Util.getRowMap(1);
+        System.out.println("------DB DATA------");
+        System.out.println("dbUser = " + dbUser);
+
+        //API DATA THAT WE GENERATE / BODY
+        System.out.println("-------API----------");
+        String password =(String) apiData.remove("password");
+        System.out.println("apiData = " + apiData);
+
+        Assert.assertEquals(apiData,dbUser);
+        apiData.put("password",password);
+    }
+
+    @Then("created user should be able to login Library UI")
+    public void createdUserShouldBeAbleToLoginLibraryUI() {
+
+        LoginPage loginPage=new LoginPage();
+        // email
+        String email = (String) apiData.get("email");
+        System.out.println("email = " + email);
+        // password
+        String password = (String) apiData.get("password");
+        System.out.println("password = " + password);
+        loginPage.login(email,password);
+
+        BrowserUtil.waitFor(2);
 
     }
+
+    @And("created user name should appear in Dashboard Page")
+    public void createdUserNameShouldAppearInDashboardPage() {
+
+        BookPage bookPage=new BookPage();
+
+        // UI FULLNAME
+        String uiFull = bookPage.accountHolderName.getText();
+        System.out.println("uiFull = " + uiFull);
+        // API DATA THAT WE SEND
+        String apiFull = (String) apiData.get("full_name");
+        System.out.println("apiFull = " + apiFull);
+        Assert.assertEquals(apiFull,uiFull);
+    }
+
+
+    String token;
+    @Given("I logged Library api with credentials {string} and {string}")
+    public void iLoggedLibraryApiWithCredentialsAnd(String email, String password) {
+
+        token = LibraryAPI_Util.getToken(email, password);
+        givenPart= RestAssured.given().log().uri();
+    }
+
+    @And("I send token information as request body")
+    public void iSendTokenInformationAsRequestBody() {
+        givenPart.formParam("token",token);
+    }
+
+
+
 }
